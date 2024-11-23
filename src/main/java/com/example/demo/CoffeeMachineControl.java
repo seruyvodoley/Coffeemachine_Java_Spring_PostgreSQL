@@ -9,6 +9,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+import static org.springframework.jdbc.support.JdbcUtils.isNumeric;
+
 /**
  * Класс для управления взаимодействием с базой данных кофемашин.
  * Реализует операции добавления, редактирования, удаления, поиска и получения списка кофемашин.
@@ -29,6 +31,16 @@ public class CoffeeMachineControl {
         jdbcTemplate.update(sql, coffeeMachine.getBrand(), coffeeMachine.getModel(), coffeeMachine.getPrice(),
                 coffeeMachine.getWaterTankCapacity(), coffeeMachine.getMilkTankCapacity(), coffeeMachine.getCoffeeBeanCapacity());
     }
+
+    public List<CoffeeMachine> searchCoffeeMachine(String field, String value) {
+        String sql = "SELECT * FROM coffee_machines WHERE LOWER(" + field + ") LIKE ?";
+        return jdbcTemplate.query(connection -> {
+            var ps = connection.prepareStatement(sql);
+            ps.setString(1, "%" + value.toLowerCase() + "%");
+            return ps;
+        }, new CoffeeMachineRowMapper());
+    }
+
 
     /**
      * Получает список всех кофемашин из базы данных.
@@ -69,14 +81,7 @@ public class CoffeeMachineControl {
      * @param value значение, по которому осуществляется поиск
      * @return список кофемашин, соответствующих критерию поиска
      */
-    public List<CoffeeMachine> searchCoffeeMachine(String field, String value) {
-        String sql = "SELECT * FROM coffee_machines WHERE LOWER(" + field + ") LIKE ?";
-        return jdbcTemplate.query(connection -> {
-            var ps = connection.prepareStatement(sql);
-            ps.setString(1, "%" + value.toLowerCase() + "%");
-            return ps;
-        }, new CoffeeMachineRowMapper());
-    }
+
 
     /**
      * Внутренний класс для преобразования строк базы данных в объекты `CoffeeMachine`.
@@ -88,7 +93,7 @@ public class CoffeeMachineControl {
             coffeeMachine.setId(rs.getInt("id"));
             coffeeMachine.setBrand(rs.getString("brand"));
             coffeeMachine.setModel(rs.getString("model"));
-            coffeeMachine.setPrice(rs.getDouble("price"));
+            coffeeMachine.setPrice(rs.getInt("price"));
             coffeeMachine.setWaterTankCapacity(rs.getInt("water_tank_capacity"));
             coffeeMachine.setMilkTankCapacity(rs.getInt("milk_tank_capacity"));
             coffeeMachine.setCoffeeBeanCapacity(rs.getInt("coffee_bean_capacity"));

@@ -62,7 +62,7 @@ public class Application {
         System.out.println("Введите модель:");
         String model = scanner.nextLine();
         System.out.println("Введите цену:");
-        double price = Double.parseDouble(scanner.nextLine());
+        int price = Integer.parseInt(scanner.nextLine());
         System.out.println("Введите ёмкость для воды (мл):");
         int waterCapacity = Integer.parseInt(scanner.nextLine());
         System.out.println("Введите ёмкость для молока (мл):");

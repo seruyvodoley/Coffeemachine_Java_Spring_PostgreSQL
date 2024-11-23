@@ -1,18 +1,30 @@
 package com.example.demo;
+import jakarta.validation.constraints.NotBlank;
 
+import javax.validation.constraints.*;
 /**
  * Класс, представляющий кофемашину.
  * Хранит информацию о модели, бренде, цене и ёмкостях контейнеров для воды, молока и кофейных зёрен.
  */
 public class CoffeeMachine {
     private int id;  // Идентификатор кофемашины
-    private String brand;  // Бренд кофемашины
-    private String model;  // Модель кофемашины
-    private double price;  // Цена кофемашины
-    private int waterTankCapacity;  // Ёмкость резервуара для воды (в миллилитрах)
-    private int milkTankCapacity;  // Ёмкость резервуара для молока (в миллилитрах)
-    private int coffeeBeanCapacity;  // Ёмкость контейнера для кофейных зёрен (в граммах)
+    @NotBlank(message = "Бренд не может быть пустым")
+    private String brand;
 
+    @NotBlank(message = "Модель не может быть пустой")
+    private String model;
+
+    @DecimalMin(value = "0.0", message = "Цена должна быть положительным числом")
+    private double price;
+
+    @Min(value = 0, message = "Ёмкость для воды не может быть меньше 0")
+    private int waterTankCapacity;
+
+    @Min(value = 0, message = "Ёмкость для молока не может быть меньше 0")
+    private int milkTankCapacity;
+
+    @Min(value = 0, message = "Ёмкость для кофейных зёрен не может быть меньше 0")
+    private int coffeeBeanCapacity;
     /**
      * Конструктор по умолчанию, инициализирующий поля значениями по умолчанию.
      */

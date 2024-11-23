@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список кофемашин</title>
+</head>
+<body>
+<h1>Список всех кофемашин</h1>
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Бренд</th>
+        <th>Модель</th>
+        <th>Цена</th>
+        <th>Емкость для воды (л)</th>
+        <th>Емкость для молока (л)</th>
+        <th>Емкость для кофейных зерен (г)</th>
+        <th>Действия</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="machine : ${machines}">
+        <td th:text="${machine.id}"></td>
+        <td th:text="${machine.brand}"></td>
+        <td th:text="${machine.model}"></td>
+        <td th:text="${machine.price}"></td>
+        <td th:text="${machine.waterTankCapacity}"></td>
+        <td th:text="${machine.milkTankCapacity}"></td>
+        <td th:text="${machine.coffeeBeanCapacity}"></td>
+        <td>
+            <a th:href="@{/coffee-machines/edit/{id}(id=${machine.id})}">Редактировать</a>
+            <a th:href="@{/coffee-machines/delete/{id}(id=${machine.id})}">Удалить</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<a href="/coffee-machines/add">Добавить новую кофемашину</a>
+<a href="/">Вернуться на главную</a>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Добавить кофемашину</title>
+</head>
+<body>
+<h1>Добавить новую кофемашину</h1>
+<form action="/coffee-machines/add" method="post" th:object="${coffeeMachine}">
+    <div>
+        <label for="brand">Бренд:</label>
+        <input type="text" id="brand" name="brand" th:field="*{brand}" required>
+        <span th:if="${#fields.hasErrors('brand')}" th:errors="*{brand}"></span>
+    </div>
+    <div>
+        <label for="model">Модель:</label>
+        <input type="text" id="model" name="model" th:field="*{model}" required>
+        <span th:if="${#fields.hasErrors('model')}" th:errors="*{model}"></span>
+    </div>
+    <div>
+        <label for="price">Цена:</label>
+        <input type="number" id="price" name="price" th:field="*{price}" required>
+        <span th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></span>
+    </div>
+    <div>
+        <label for="waterTankCapacity">Ёмкость для воды:</label>
+        <input type="number" id="waterTankCapacity" name="waterTankCapacity" th:field="*{waterTankCapacity}" required>
+        <span th:if="${#fields.hasErrors('waterTankCapacity')}" th:errors="*{waterTankCapacity}"></span>
+    </div>
+    <div>
+        <label for="milkTankCapacity">Ёмкость для молока:</label>
+        <input type="number" id="milkTankCapacity" name="milkTankCapacity" th:field="*{milkTankCapacity}" required>
+        <span th:if="${#fields.hasErrors('milkTankCapacity')}" th:errors="*{milkTankCapacity}"></span>
+    </div>
+    <div>
+        <label for="coffeeBeanCapacity">Ёмкость для кофейных зёрен:</label>
+        <input type="number" id="coffeeBeanCapacity" name="coffeeBeanCapacity" th:field="*{coffeeBeanCapacity}" required>
+        <span th:if="${#fields.hasErrors('coffeeBeanCapacity')}" th:errors="*{coffeeBeanCapacity}"></span>
+    </div>
+    <button type="submit">Добавить</button>
+</form>
+<div th:if="${error}">
+    <p th:text="${error}" style="color: red;"></p>
+</div>
+</body>
+</html>

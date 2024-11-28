@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Header</title>
+</head>
+<body>
+<header th:fragment="header" class="mb-4" >
+    <div class="container">
+        <div class="flex">
+            </div>
+            <div class="logout">
+                <form th:action="@{/logout}" method="post" id="logoutForm" class="delete">
+                    <input type="submit" value="Logout" class="btn btn-light">
+                </form>
+            </div>
+        </div>
+    </div>
+</header>
+</body>
+</html>

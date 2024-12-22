@@ -1,16 +1,54 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Coffee Machine Management</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
 </head>
 <body>
-<h1>Добро пожаловать в приложение для управления кофемашинами!</h1>
-<ul>
-    <li><a href="/coffee-machines/list">Посмотреть все кофемашины</a></li>
-    <li><a href="/coffee-machines/add">Добавить новую кофемашину</a></li>
-    <li><a href="/coffee-machines/search">Поиск кофемашины</a></li> <!-- Кнопка для перехода на форму поиска -->
-</ul>
+<div th:replace="~{header :: header}"></div>
+
+<div class="container">
+    <h1 class="mt-4">Добро пожаловать в приложение для управления кофемашинами!</h1>
+    <div class="row">
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Список кофемашин</h5>
+                    <p class="card-text">Посмотрите все кофемашины, зарегистрированные в системе.</p>
+                </div>
+                <div class="card-footer">
+                    <a href="/coffee-machines/list" class="btn btn-primary">Перейти</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4" sec:authorize="hasRole('ROLE_ADMIN')">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Добавить кофемашину</h5>
+                    <p class="card-text">Добавьте новую кофемашину в систему.</p>
+                </div>
+                <div class="card-footer">
+                    <a href="/coffee-machines/add" class="btn btn-success">Перейти</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Поиск кофемашин</h5>
+                    <p class="card-text">Найдите кофемашину по заданным параметрам.</p>
+                </div>
+                <div class="card-footer">
+                    <a href="/coffee-machines/search" class="btn btn-info">Перейти</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>

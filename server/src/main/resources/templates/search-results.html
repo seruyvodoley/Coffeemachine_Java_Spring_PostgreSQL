@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Результаты поиска</title>
+</head>
+<body>
+<h1>Результаты поиска</h1>
+
+<!-- Сообщение об отсутствии результатов -->
+<div th:if="${message}">
+    <p style="color: red;" th:text="${message}"></p>
+</div>
+
+<!-- Список найденных кофемашин -->
+<div th:if="${machines}">
+    <ul>
+        <li th:each="machine : ${machines}">
+            <span th:text="${machine.brand}"></span>
+            <span th:text="${machine.model}"></span>
+        </li>
+    </ul>
+</div>
+
+<!-- Кнопка для возврата на главную страницу -->
+<a href="/">Вернуться на главную</a>
+</body>
+</html>

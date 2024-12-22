@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Поиск кофемашин</title>
+</head>
+<body>
+<h1>Поиск кофемашин</h1>
+
+<!-- Форма поиска -->
+<form action="/coffee-machines/search" method="get">
+    <label for="field">Параметр поиска:</label>
+    <select id="field" name="field" required>
+        <option value="brand">Бренд</option>
+        <option value="model">Модель</option>
+    </select><br>
+    <label for="value">Значение:</label>
+    <input type="text" id="value" name="value" required><br>
+    <button type="submit">Поиск</button>
+</form>
+
+<!-- Сообщение об ошибке -->
+<div th:if="${error}">
+    <p style="color: red;" th:text="${error}"></p>
+</div>
+
+<!-- Результаты поиска -->
+<div th:if="${machine}">
+    <h2>Результаты поиска</h2>
+    <ul>
+        <li th:each="machine : ${machine}">
+            <span th:text="${machine.brand}"></span> -
+            <span th:text="${machine.model}"></span>
+        </li>
+    </ul>
+</div>
+
+<!-- Сообщение об отсутствии результатов -->
+<div th:if="${message}">
+    <p style="color: red;" th:text="${message}"></p>
+</div>
+
+<!-- Кнопка возврата на главную -->
+<a href="/">Вернуться на главную</a>
+</body>
+</html>

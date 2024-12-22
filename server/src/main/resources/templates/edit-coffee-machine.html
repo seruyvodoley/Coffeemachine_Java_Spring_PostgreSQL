@@ -1,0 +1,23 @@
+<form th:action="@{/coffee-machines/edit/{id}(id=${coffeeMachine.id})}" method="post"
+      xmlns:th="http://www.w3.org/1999/xhtml">
+
+    <label for="brand">Бренд:</label>
+    <input type="text" id="brand" name="brand" th:value="${coffeeMachine.brand}" required><br><br>
+
+    <label for="model">Модель:</label>
+    <input type="text" id="model" name="model" th:value="${coffeeMachine.model}" required><br><br>
+
+    <label for="price">Цена:</label>
+    <input type="number" id="price" name="price" th:value="${coffeeMachine.price}" required><br><br>
+
+    <label for="waterTankCapacity">Ёмкость для воды:</label>
+    <input type="number" id="waterTankCapacity" name="waterTankCapacity" th:value="${coffeeMachine.waterTankCapacity}" required><br><br>
+
+    <label for="milkTankCapacity">Ёмкость для молока:</label>
+    <input type="number" id="milkTankCapacity" name="milkTankCapacity" th:value="${coffeeMachine.milkTankCapacity}" required><br><br>
+
+    <label for="coffeeBeanCapacity">Ёмкость для кофейных зёрен:</label>
+    <input type="number" id="coffeeBeanCapacity" name="coffeeBeanCapacity" th:value="${coffeeMachine.coffeeBeanCapacity}" required><br><br>
+
+    <button type="submit">Обновить</button>
+</form>

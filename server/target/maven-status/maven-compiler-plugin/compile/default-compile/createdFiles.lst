@@ -1,0 +1,11 @@
+com\example\demo\CoffeeMachineControl.class
+com\example\demo\MessageProducer.class
+com\example\demo\CoffeeMachineControl$CoffeeMachineRowMapper.class
+com\example\demo\Application.class
+com\example\demo\CoffeeMachine.class
+com\example\demo\CoffeeMachineRepository.class
+com\example\demo\CoffeeMachineService.class
+com\example\demo\RestCoffeeMachineController.class
+com\example\demo\CoffeeMachineController.class
+com\example\demo\MessageListener.class
+com\example\demo\JmsTemplateConfig.class

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Поиск Кофемашин</title>
+</head>
+<body>
+<h1>Поиск кофемашины</h1>
+<form action="/results" method="get">
+    <label for="field">Поле для поиска:</label>
+    <input type="text" id="field" name="field" placeholder="Введите поле (например, brand)" required><br><br>
+
+    <label for="value">Значение:</label>
+    <input type="text" id="value" name="value" placeholder="Введите значение" required><br><br>
+
+    <button type="submit">Искать</button>
+</form>
+
+<!-- Вывод ошибки -->
+<p th:if="${error}" th:text="${error}" style="color: red;"></p>
+</body>
+</html>
